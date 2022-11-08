@@ -40,7 +40,7 @@ SD_IMAGE ?= "recipes-fsl/images/fsl-image-gui.bb"
 require ${SD_IMAGE}
 
 # The image to install to eMMC
-YOCTO_DEFAULT_IMAGE ?=  "fsl-image-gui"
+YOCTO_DEFAULT_IMAGE ?= "${@os.path.splitext(os.path.basename('${SD_IMAGE}'))[0]}"
 IMAGE_DEPENDS += "${YOCTO_DEFAULT_IMAGE}"
 
 # Approximate maximum IMAGE_ROOTFS_SIZE to allow for 8GB SD card
