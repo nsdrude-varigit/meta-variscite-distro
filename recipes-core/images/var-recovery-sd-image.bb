@@ -41,7 +41,6 @@ require ${SD_IMAGE}
 
 # The image to install to eMMC
 YOCTO_DEFAULT_IMAGE ?= "${@os.path.splitext(os.path.basename('${SD_IMAGE}'))[0]}"
-IMAGE_DEPENDS += "${YOCTO_DEFAULT_IMAGE}"
 
 # Approximate maximum IMAGE_ROOTFS_SIZE to allow for 8GB SD card
 # The actual image will be slightly smaller after adjusted by wks
