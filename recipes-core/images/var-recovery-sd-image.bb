@@ -61,8 +61,6 @@ YOCTO_IMAGE_PATH ?=     "${DEPLOY_DIR_IMAGE}/${YOCTO_IMAGE}"
 YOCTO_SCRIPTS_PATH ?=   "${THISDIR}/../../scripts"
 YOCTO_INSTALL_SCRIPT ?= "am6_install_yocto.sh"
 
-export IMAGE_BASENAME = "var-recovery-sd-image"
-
 do_recovery_sdcard() {
     # Install scripts for eMMC/Nand installation
     install -d ${D}/${bindir}
