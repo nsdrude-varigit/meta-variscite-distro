@@ -22,7 +22,7 @@ IMAGE_INSTALL += "\
     ti-demos \
 "
 
-export IMAGE_BASENAME = "var-default-image"
+export IMAGE_BASENAME = "${PN}"
 
 OPENCL = " \
     ${@bb.utils.contains('MACHINE_FEATURES','dsp','ti-opencl','',d)} \
