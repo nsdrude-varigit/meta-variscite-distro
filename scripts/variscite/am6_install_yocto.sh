@@ -7,6 +7,7 @@ ROOTFSPART=2
 PART=p
 ROOTFS_IMAGE=rootfs.tar.xz
 ROTTFS_START_SECTOR="276480"
+UBOOT_ENV_OFFSET_MB="134"
 
 check_board()
 {
@@ -62,10 +63,14 @@ delete_emmc()
 			dd if=/dev/zero of=/dev/${EMMC_BLOCK}${PART}${i} bs=1M count=1 2>/dev/null || true
 		fi
 	done
+
 	sync
 
-	# Zero out first 100MB
-	dd if=/dev/zero of=/dev/${EMMC_BLOCK} bs=1M count=100
+	# Zero out first 10MB
+	dd if=/dev/zero of=/dev/${EMMC_BLOCK} bs=1M count=10
+
+	# Zero out environment
+	dd if=/dev/zero of=/dev/${EMMC_BLOCK} bs=1M count=1 seek=${UBOOT_ENV_OFFSET_MB} 2>/dev/null || true
 
 	sync; sleep 1
 }
