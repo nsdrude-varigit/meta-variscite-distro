@@ -21,6 +21,8 @@ IMAGE_INSTALL += "\
     ti-analytics \
     ti-demos \
     var-mii \
+    weston-init \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd-analyze', '', d)} \
 "
 
 export IMAGE_BASENAME = "${PN}"
