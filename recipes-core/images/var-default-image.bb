@@ -48,3 +48,10 @@ WIC_CREATE_EXTRA_ARGS += " --no-fstab-update"
 # Extra boot files for WIC images
 do_image_wic_append_am62xx-evm[depends] += " wifi-oob:do_deploy"
 IMAGE_BOOT_FILES_append_am62xx-evm += " wificfg"
+
+systemd_disable_vt () {
+    rm ${IMAGE_ROOTFS}${sysconfdir}/systemd/system/getty.target.wants/getty@tty*.service
+}
+
+IMAGE_PREPROCESS_COMMAND:append = " ${@ 'systemd_disable_vt;' if bb.utils.contains('DISTRO_FEATURES', 'systemd', True, False, d) and bb.utils.contains('USE_VT', '0', True, False, d) else ''} "
+
